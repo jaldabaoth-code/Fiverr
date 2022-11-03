@@ -2,12 +2,14 @@
 
 {% block stylesheets %}
     {{ parent() }}
-{#     {{ encore_entry_link_tags('header') }}
-    {{ encore_entry_link_tags('navbar') }} #}
+    {{ encore_entry_link_tags('header') }}
+    {{ encore_entry_link_tags('navbar') }}
 {% endblock %}
 
 {% block navbar %}
-    {% include "component/_navbar.html.twig" %}
+    <div class="d-flex justify-content-center">
+        {% include "component/_navbar.html.twig" %}
+    </div>
 {% endblock %}
 
 {% block header %}

@@ -2,10 +2,3 @@
 @import '../variables.scss';
 @import "../~bootstrap/scss/bootstrap";
 
-.carousel-item-next:not(.carousel-item-start), .active.carousel-item-end {
-    transform: translateY(100%) !important;
-}
-
-.carousel-item-prev:not(.carousel-item-end), .active.carousel-item-start {
-    transform: translateY(-100%) !important;
-}

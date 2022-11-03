@@ -11,16 +11,17 @@
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('rightColumn') }}
-{#     {{ encore_entry_script_tags('home') }} #}
+    {{ encore_entry_script_tags('home') }}
 {% endblock %}
 
 {% block body %}
     <div class="fake-content d-flex col-12">
-        <div class="col-8 m-0 p-0">
-            {% include "component/_chat.html.twig" %}
+        <div class="chat2 col-9 m-0 p-0">
+            {% include "home/_chat.html.twig" %}
         </div>
-        <div class="col-4 m-0 p-0">
-            {% include "component/_rightColumn.html.twig" %}
+        <div class="rightColumn col-3 m-0 p-0">
+            {% include "home/_request_form.html.twig" %}
+            {% include "home/_rightColumn.html.twig" %}
         </div>
     </div>
- {% endblock %}
+{% endblock %}
