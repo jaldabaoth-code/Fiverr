@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\HelpRequestRepository;
+use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=HelpRequestRepository::class)
+ * @ORM\Entity(repositoryClass=QuestionRepository::class)
  */
-class HelpRequest
+class Question
 {
     /**
      * @ORM\Id
@@ -20,7 +20,7 @@ class HelpRequest
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="helpRequests")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="questions")
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;
@@ -35,16 +35,6 @@ class HelpRequest
      */
     private $picture;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=User::class)
-     */
-    private $helpers;
-
-    public function __construct()
-    {
-        $this->helpers = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -58,7 +48,6 @@ class HelpRequest
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
-
         return $this;
     }
 
@@ -70,7 +59,6 @@ class HelpRequest
     public function setContent(string $content): self
     {
         $this->content = $content;
-
         return $this;
     }
 
@@ -82,31 +70,6 @@ class HelpRequest
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|User[]
-     */
-    public function getHelpers(): Collection
-    {
-        return $this->helpers;
-    }
-
-    public function addHelper(User $helper): self
-    {
-        if (!$this->helpers->contains($helper)) {
-            $this->helpers[] = $helper;
-        }
-
-        return $this;
-    }
-
-    public function removeHelper(User $helper): self
-    {
-        $this->helpers->removeElement($helper);
-
         return $this;
     }
 }

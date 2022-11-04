@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Entity\HelpRequest;
+use App\Entity\Question;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;
@@ -42,13 +42,13 @@ class User implements UserInterface
     private ?string $profilePicture;
 
     /**
-     * @ORM\OneToMany(targetEntity=HelpRequest::class, mappedBy="author", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Question::class, mappedBy="author", orphanRemoval=true)
      */
-    private $helpRequests;
+    private $questions;
 
     public function __construct()
     {
-        $this->helpRequests = new ArrayCollection();
+        $this->questions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -58,7 +58,6 @@ class User implements UserInterface
 
     /**
      * A visual identifier that represents this user.
-     *
      * @see UserInterface
      */
     public function getUsername(): string
@@ -69,7 +68,6 @@ class User implements UserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
-
         return $this;
     }
 
@@ -79,22 +77,19 @@ class User implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
+        // Guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
-
         return array_unique($roles);
     }
 
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
-
         return $this;
     }
 
     /**
      * This method can be removed in Symfony 6.0 - is not needed for apps that do not check user passwords.
-     *
      * @see UserInterface
      */
     public function getPassword(): ?string
@@ -104,7 +99,6 @@ class User implements UserInterface
 
     /**
      * This method can be removed in Symfony 6.0 - is not needed for apps that do not check user passwords.
-     *
      * @see UserInterface
      */
     public function getSalt(): ?string
@@ -129,7 +123,6 @@ class User implements UserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -141,37 +134,34 @@ class User implements UserInterface
     public function setProfilePicture(?string $profilePicture): self
     {
         $this->profilePicture = $profilePicture;
-
         return $this;
     }
 
     /**
-     * @return Collection|HelpRequest[]
+     * @return Collection|Question[]
      */
-    public function getHelpRequests(): Collection
+    public function getQuestions(): Collection
     {
-        return $this->helpRequests;
+        return $this->questions;
     }
 
-    public function addHelpRequest(HelpRequest $helpRequest): self
+    public function addQuestion(Question $question): self
     {
-        if (!$this->helpRequests->contains($helpRequest)) {
-            $this->helpRequests[] = $helpRequest;
-            $helpRequest->setAuthor($this);
+        if (!$this->questions->contains($question)) {
+            $this->questions[] = $question;
+            $question->setAuthor($this);
         }
-
         return $this;
     }
 
-    public function removeHelpRequest(HelpRequest $helpRequest): self
+    public function removeQuestion(Question $question): self
     {
-        if ($this->helpRequests->removeElement($helpRequest)) {
-            // set the owning side to null (unless already changed)
-            if ($helpRequest->getAuthor() === $this) {
-                $helpRequest->setAuthor(null);
+        if ($this->questions->removeElement($question)) {
+            // Set the owning side to null (unless already changed)
+            if ($question->getAuthor() === $this) {
+                $question->setAuthor(null);
             }
         }
-
         return $this;
     }
 }

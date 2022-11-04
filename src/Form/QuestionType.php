@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
-use App\Entity\HelpRequest;
+use App\Entity\Question;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -11,7 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class HelpRequestType extends AbstractType
+class QuestionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -24,7 +24,7 @@ class HelpRequestType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => HelpRequest::class,
+            'data_class' => Question::class,
         ]);
     }
 }

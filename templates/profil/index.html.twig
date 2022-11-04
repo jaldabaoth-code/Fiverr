@@ -13,11 +13,9 @@
 
     {{ encore_entry_link_tags('rightColumn') }}
     {{ encore_entry_link_tags('profil') }}
+        {{ encore_entry_link_tags('profilIndex') }}
 {% endblock %}
 
 {% block body %}
-    {% include "component/_header.hml.twig" %}
-    <div class="container fake-content row d-flex justifify-content-center col-12 m-0 p-0">
-        {% include "profil/_profil.html.twig" %}
-    </div>
+    {% include "profil/_profil.html.twig" %}
 {% endblock %}

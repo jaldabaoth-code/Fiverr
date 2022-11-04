@@ -23,16 +23,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     use TargetPathTrait;
 
     public const LOGIN_ROUTE = 'app_login';
-
     private $entityManager;
     private $urlGenerator;
     private $csrfTokenManager;
 
-    public function __construct(
-        EntityManagerInterface $entityManager,
-        UrlGeneratorInterface $urlGenerator,
-        CsrfTokenManagerInterface $csrfTokenManager
-        )
+    public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager)
     {
         $this->entityManager = $entityManager;
         $this->urlGenerator = $urlGenerator;
@@ -41,8 +36,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
     public function supports(Request $request)
     {
-        return self::LOGIN_ROUTE === $request->attributes->get('_route')
-            && $request->isMethod('POST');
+        return self::LOGIN_ROUTE === $request->attributes->get('_route') && $request->isMethod('POST');
     }
 
     public function getCredentials(Request $request)
@@ -55,7 +49,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
             Security::LAST_USERNAME,
             $credentials['username']
         );
-
         return $credentials;
     }
 
@@ -65,23 +58,18 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         if (!$this->csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException();
         }
-
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['username' => $credentials['username']]);
-
         if (!$user) {
             throw new UsernameNotFoundException('Username could not be found.');
         }
-
         return $user;
     }
 
     public function checkCredentials($credentials, UserInterface $user)
     {
         if ($user->getUsername() === $credentials['username']) {
-            
             return true;
         }
-
         return false;
     }
 
@@ -90,8 +78,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
-
-        // redirect to some "app_homepage" route - of wherever you want
         return new RedirectResponse($this->urlGenerator->generate('home'));
     }
 

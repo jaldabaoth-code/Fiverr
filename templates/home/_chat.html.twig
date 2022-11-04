@@ -1,18 +1,15 @@
 {% if app.user is not empty %}
-<div>
-    <!-- minified snippet to load TalkJS without delaying your page -->
+    <!-- Minified snippet to load TalkJS without delaying your page -->
     <script>
         (function(t,a,l,k,j,s){
         s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";a.head.appendChild(s)
         ;k=t.Promise;t.Talk={v:3,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});l
         .push([f])},catch:function(){return k&&new k()},c:l}};})(window,document,[]);
     </script>
-    <!-- container element in which TalkJS will display a chat UI -->
+    <!-- Container element in which TalkJS will display a chat UI -->
     <div id="talkjs-container" style="width: 90%; margin: 30px; height: 500px">
         <i>Loading chat...</i>
     </div>
-</div>
-
     <script>
         Talk.ready.then(function() {
             var me = new Talk.User({
@@ -26,23 +23,20 @@
                 appId: 'tJCERajb',
                 me: me
             });
-            
-            {% for helpRequest in helpRequests %}
-                {% if helpRequest.author.id == 3 %}
+            {% for question in questions %}
+                {% if question.author.id == 3 %}
                     var author = new Talk.User({
-                        id: '{{ helpRequest.author.id }}',
-                        name: '{{ helpRequest.author.username }}',
-                        email: '{{ helpRequest.author.email }}',
-                        photoUrl: '{{ helpRequest.author.profilePicture }}',
+                        id: '{{ question.author.id }}',
+                        name: '{{ question.author.username }}',
+                        email: '{{ question.author.email }}',
+                        photoUrl: '{{ question.author.profilePicture }}',
                         welcomeMessage: 'd',
                     });
                 {% endif %}
             {% endfor %}
-
             var conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me, author))
             conversation.setParticipant(me);
             conversation.setParticipant(author);
-
             var inbox = talkSession.createInbox({selected: conversation});
             inbox.mount(document.getElementById('talkjs-container'));
         });
