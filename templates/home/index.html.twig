@@ -1,25 +1,15 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Fiverr - Plateforme de services freelances pour entreprises{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-{% endblock %}
-
-{% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('rightColumn') }}
-    {{ encore_entry_script_tags('home') }}
-{% endblock %}
+{% block title %}Fiverr - Platform of freelance services for companies{% endblock %}
 
 {% block body %}
     <div class="d-flex col-12">
-        <div class="chatColumn col-9">
+        <div class="col-9">
             {% include "home/_chat.html.twig" %}
         </div>
         <div class="col-3 border-start h-100">
-            {% include "home/_request_form.html.twig" %}
-            {% include "home/_rightColumn.html.twig" %}
+            {% include "home/_formQuestion.html.twig" %}
+            {% include "home/_questionsList.html.twig" %}
         </div>
     </div>
 {% endblock %}

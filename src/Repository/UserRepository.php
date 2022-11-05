@@ -18,4 +18,15 @@ class UserRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, User::class);
     }
+
+    public function firstUserId()
+    {
+        return $this->createQueryBuilder('u')
+            ->select("u.id")
+            ->orderBy('u.id', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

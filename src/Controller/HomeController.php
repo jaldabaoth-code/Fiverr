@@ -2,10 +2,9 @@
 
 namespace App\Controller;
 
-use App\Repository\UserRepository;
 use App\Entity\Question;
 use App\Form\QuestionType;
-use App\Repository\QuestionRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,17 +27,15 @@ class HomeController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('home');
         }
-        $users = $userRepository->findBy([]);
         $questions = $this->getDoctrine()
-        ->getRepository(Question::class)
-        ->findAll();
-
+            ->getRepository(Question::class)
+            ->findAll();
+        // Smallest user id
+        $firstUserId = $userRepository->firstUserId()[0]['id'];
         return $this->render('home/index.html.twig', [
             'formQuestion' => $formQuestion->createView(),
             'questions' => $questions,
-            'users' => $users,
-          /*   'owner' => $owner */
+            'firstUserId' => $firstUserId
         ]);
     }
-
 }

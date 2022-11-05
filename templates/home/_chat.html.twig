@@ -24,13 +24,13 @@
                 me: me
             });
             {% for question in questions %}
-                {% if question.author.id == 3 %}
+                {% if question.author.id == firstUserId %}
                     var author = new Talk.User({
                         id: '{{ question.author.id }}',
                         name: '{{ question.author.username }}',
                         email: '{{ question.author.email }}',
                         photoUrl: '{{ question.author.profilePicture }}',
-                        welcomeMessage: 'd',
+                        welcomeMessage: 'Hi :D',
                     });
                 {% endif %}
             {% endfor %}

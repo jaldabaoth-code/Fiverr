@@ -1,10 +1,5 @@
 {% extends "base.html.twig" %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('navbar') }}
-{% endblock %}
-
 {% block navbar %}
     <div class="d-flex justify-content-center">
         {% include "component/_navbar.html.twig" %}

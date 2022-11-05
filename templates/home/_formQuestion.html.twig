@@ -1,5 +1,5 @@
-{{ form_start(formQuestion, {'attr': {'class': 'my-5 px-4'}}) }}
-    {{ form_errors(formQuestion, {'attr': {'class': 'mb-4'}}) }}
+{{ form_start(formQuestion) }}
+    {{ form_errors(formQuestion) }}
 
     {{ form_label(formQuestion.content, 'Your question', {'attr': {'class': 'form-label'}}) }}
     {{ form_widget(formQuestion.content, { 'attr': { 'id': 'content', 'class': 'form-control mb-3' }}) }}
@@ -7,6 +7,5 @@
     {{ form_label(formQuestion.picture, 'Your picture', {'attr': {'class': 'form-label mt-2'}}) }}
     {{ form_widget(formQuestion.picture, { 'attr': { 'id': 'picture', 'placeholder': 'http://www.mypic.com', 'class': 'form-control mb-2' }}) }}
 
-    <button type="button" class="btn btn-outline-success col-12 mt-4 mb-5">Ask!</button>
+    <button class="buttonFormQuestion col-12 text-center py-3 mt-4 mb-5 border border-success rounded text-decoration-none" type="submit">Ask!</button>
 {{ form_end(formQuestion) }}
-
