@@ -3,11 +3,12 @@
 {% block title %}Fiverr - Platform of freelance services for companies{% endblock %}
 
 {% block body %}
-    <div class="d-flex col-12">
-        <div class="col-9">
+    <div class="d-flex col-12 row m-0">
+        <div class="col-12 col-lg-9">
             {% include "home/_chat.html.twig" %}
         </div>
-        <div class="col-3 border-start h-100">
+        <div class="col-12 col-lg-3 border-start h-100">
+            <h2 class="text-center my-3">Questions</h2>
             {% include "home/_formQuestion.html.twig" %}
             {% include "home/_questionsList.html.twig" %}
         </div>
