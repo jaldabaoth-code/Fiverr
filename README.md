@@ -51,4 +51,4 @@ If you meet the prerequisites, you can proceed to the installation of the projec
 
 ## The Links
 
-<a href="https://github.com/Wowlfy/hackathon-2/master">Link to the repository of project where we worked during <b>WCS Web Hackathon 2</b></a>
+<a href="https://github.com/Wowlfy/hackathon-2">Link to the repository of project where we worked during <b>WCS Web Hackathon 2</b></a>
